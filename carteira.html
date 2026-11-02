@@ -61,6 +61,7 @@ button{font:inherit;cursor:pointer;color:inherit}
 .head .months{margin-left:auto}
 #msg:empty,#prev:empty{display:none}
 .head h1{margin:0;font-size:20px;letter-spacing:-.02em;font-weight:700}
+.ttl{margin:0;font-size:20px;letter-spacing:-.02em;font-weight:700;white-space:nowrap}
 .kpis{display:flex;gap:10px}
 .kpi{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:6px 14px;box-shadow:var(--shadow);display:flex;align-items:baseline;gap:12px;flex-wrap:wrap}
 .kpi .l{font-size:11px;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);font-weight:700}
@@ -77,7 +78,7 @@ input,select{font:inherit;color:var(--ink);background:var(--surface);border:1px 
 input:focus,select:focus{border-color:var(--accent)}
 .tools input[type=search]{flex:1 1 200px;min-width:200px;max-width:260px}
 input[type=checkbox]{padding:0;accent-color:var(--accent)}
-.tablebox{overflow:auto;max-height:calc(100vh - 205px);min-height:300px}
+.tablebox{overflow:auto;max-height:calc(100vh - 200px);min-height:300px}
 table{border-collapse:separate;border-spacing:0;width:100%;font-size:12.5px;font-variant-numeric:tabular-nums}
 thead th{position:sticky;top:0;z-index:2;background:var(--surface2);color:var(--muted);font-size:10.5px;letter-spacing:.07em;text-transform:uppercase;font-weight:700;text-align:center;padding:10px 7px;border-bottom:1px solid var(--line);line-height:1.25;cursor:pointer;user-select:none;white-space:nowrap}
 tbody td{padding:8px 7px;border-bottom:1px solid var(--line);vertical-align:middle;text-align:center;white-space:nowrap}
@@ -121,6 +122,7 @@ body.embed .crumb{display:none}
 <body>
 <header class="topbar">
   <div class="crumb"><span>Exportação</span><span>/</span><b>Carteira</b></div>
+  <h1 class="ttl">Carteira de pendências</h1>
   <div class="sp"></div>
   <span class="stat" id="stat">Sem carga</span>
   <button class="btn" id="btnXls" type="button">Exportar Excel</button>
@@ -131,7 +133,7 @@ body.embed .crumb{display:none}
   </div>
 </header>
 <main class="page">
-  <div class="head"><h1>Carteira de pendências</h1><section class="kpis" id="kpis" aria-label="Totais"></section><div class="months" id="tabs"></div></div>
+  <div class="head"><section class="kpis" id="kpis" aria-label="Totais"></section><div class="months" id="tabs"></div></div>
   <div id="msg"></div>
   <div id="prev"></div>
   <section class="card">
