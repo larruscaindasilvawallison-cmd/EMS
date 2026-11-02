@@ -458,8 +458,8 @@ function render(){
   const vTot=sum(vencidos,p=>brl(p)||0);
   const kp=(l,v,n,cls='')=>`<div class="kpi ${cls}"><div class="l">${l}</div><div class="v">${v}</div><div class="n">${n}</div></div>`;
   $('#kpis').innerHTML=
-    kp('A faturar · USD','US$ '+nf2.format(aUSD),'linhas sem NF','acc')+
-    kp('A faturar · EUR','€ '+nf2.format(aEUR),'linhas sem NF','acc')+
+    kp('A faturar · USD','US$ '+nf2.format(aUSD),'acc')+
+    kp('A faturar · EUR','€ '+nf2.format(aEUR),'acc')+
     kp('Faturado','R$ '+nf2.format(fat),esc(mesLabel(S.mes)))+
     kp('A receber','R$ '+nf2.format(rec),'NF emitida, não recebida')+
     kp('Vencido','R$ '+nf2.format(vTot),vencidos.length+' NF · todos os meses',vTot>0?'bad':'');
