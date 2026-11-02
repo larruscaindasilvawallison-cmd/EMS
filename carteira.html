@@ -415,7 +415,7 @@ function render(){
   st.className='stat on';st.textContent='ZSALR '+fd(cur.date)+(nfs.length?' · NFs até '+fd(dtn[dtn.length-1]):'');
   $('#kpis').innerHTML='<div class="kpi acc"><div class="l">Valor pendente</div><div class="v">USD '+fm(val)+'</div><div class="n">'+(c.A+c.B)+' linhas ('+c.A+' não faturadas · '+c.B+' parciais) em '+abertas+' OVs</div></div>';
   const d=cmp?comparar(cur,cmp):null;
-  const T=[['ov','Por OV'],['it','Itens'],['nf','Faturamento (NF)'],['mud','Mudanças'+(d?' <small>'+(d.novas.length+d.mudou.length+d.sairam.length)+'</small>':'')],['car','Cargas']];
+  const T=[['ov','OV'],['it','Itens'],['nf','Faturamento (NF)'],['mud','Mudanças'+(d?' <small>'+(d.novas.length+d.mudou.length+d.sairam.length)+'</small>':'')],['car','Cargas']];
   $('#tabs').innerHTML=T.map(t=>'<button class="chip" type="button" data-t="'+t[0]+'" aria-pressed="'+(tab===t[0])+'">'+t[1]+'</button>').join('');
   document.querySelectorAll('#tabs .chip').forEach(b=>b.onclick=()=>{tab=b.dataset.t;render()});
   const comBar=tab==='ov'||tab==='it';
