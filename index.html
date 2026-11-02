@@ -195,7 +195,7 @@ tr.saldo td:first-child{box-shadow:inset 3px 0 0 var(--warn)}
       <h4>Exportação</h4>
       <button class="ni" type="button" data-view="pedidos" aria-current="page"><i data-i="orders"></i>Pedidos</button>
       <button class="ni" type="button" data-view="documentos"><i data-i="docs"></i>Documentos</button>
-      <button class="ni" type="button" aria-disabled="true" data-soon="Dashboard"><i data-i="dashboard"></i>Dashboard<span class="soon">em breve</span></button>
+      <button class="ni" type="button" data-view="dashboard"><i data-i="dashboard"></i>Dashboard</button>
       <button class="ni" type="button" aria-disabled="true" data-soon="Forecast de embarques"><i data-i="forecast"></i>Forecast<span class="soon">em breve</span></button>
       <h4>Cadastros e controles</h4>
       <button class="ni" type="button" data-view="importadores"><i data-i="globe"></i>Importadores</button>
@@ -392,7 +392,7 @@ async function saveFile(name,data,mime){
 }
 
 /* ---------- módulos (cada um em seu arquivo, carregado em iframe) ---------- */
-const MODS={documentos:{t:'Documentos',s:'Exportação',src:'documentos.html',fresh:true},materiais:{t:'Materiais',s:'Cadastros',src:'materiais.html'}};
+const MODS={documentos:{t:'Documentos',s:'Exportação',src:'documentos.html',fresh:true},dashboard:{t:'Dashboard',s:'Exportação',src:'dashboard.html',fresh:true},materiais:{t:'Materiais',s:'Cadastros',src:'materiais.html'}};
 const VIEWS={pedidos:{t:'Pedidos',s:'Exportação'},importadores:{t:'Importadores',s:'Cadastros'}};
 const frames={};
 let lastV=null;
