@@ -1286,7 +1286,6 @@ function doSort(){const k=SORT.k,d=SORT.dir;VIEW.sort((x,y)=>{const a=ROWS[x][k]
 function stats(){
   const n=ROWS.length;
   $('count').textContent=`${VIEW.length.toLocaleString('pt-BR')} de ${n.toLocaleString('pt-BR')} materiais`;
-  $('sub').textContent=`· ${n.toLocaleString('pt-BR')} itens`;
 }
 
 /* ---------- tabela virtual ---------- */
