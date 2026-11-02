@@ -453,7 +453,7 @@ function itRows(L){
 }
 function viewOV(v,ovs){
   const L=sorter(ovs.filter(o=>o.itens.some(passRow)),'ov');
-  const H='<thead>'+th('ov',[['ov','OV'],['cli','Cliente','l'],['sit','Situação'],['qtd','Qtde pendente'],['val','Valor pendente USD','usd'],['fatUSD','Faturado NF USD','usd'],['tx','Taxa NF'],['dr','Remessa + antiga'],['atraso','Atraso (dias)']])+'</thead>';
+  const H='<thead>'+th('ov',[['ov','OV'],['cli','Cliente','l'],['sit','Situação'],['qtd','Qtde pendente'],['val','Valor pendente USD','usd'],['fatUSD','Faturado NF USD','usd'],['tx','Taxa NF'],['dr','Remessa mais antiga'],['atraso','Atraso (dias)']])+'</thead>';
   let h='<div class="tablebox"><table>'+H+'<tbody>';
   for(const o of L){
     const op=openOV.has(o.ov);
