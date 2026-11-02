@@ -100,6 +100,7 @@ thead th.l{text-align:left}
 tr.cl{cursor:pointer}
 .late{color:var(--bad);font-weight:700}
 .muted{color:var(--muted)}
+.est-ok{color:var(--good);font-weight:700}
 .pill{display:inline-flex;align-items:center;gap:6px;padding:2px 8px;border-radius:999px;font-size:10px;font-weight:700;letter-spacing:.03em;white-space:nowrap}
 .pill::before{content:"";width:6px;height:6px;border-radius:50%;background:currentColor}
 .p-good{background:var(--good-bg);color:var(--good)} .p-warn{background:var(--warn-bg);color:var(--warn)} .p-bad{background:var(--bad-bg);color:var(--bad)}
@@ -446,9 +447,10 @@ function passRow(r){
 }
 const nfTxt=r=>r.nfs.length?r.nfs.join(', ')+' · '+fq(r.nfq)+' un.':'';
 const foot=(n,cells)=>'<tfoot><tr>'+cells.map((c,i)=>i===0?'<td colspan="'+n+'" style="text-align:left">'+c+'</td>':'<td class="r">'+c+'</td>').join('')+'</tr></tfoot>';
+const estTd=r=>r.e==null?'<td class="r"></td>':'<td class="r '+(r.e>=r.s?'est-ok':'muted')+'"'+(r.e>=r.s?' title="Estoque cobre o saldo desta linha"':'')+'>'+fq(r.e)+'</td>';
 function itRows(L){
   let h='<thead><tr><th>Item</th><th>Material</th><th>Descrição</th><th>Qtde OV</th><th>Saldo</th><th>Status</th><th class="usd">Valor pend. USD</th><th>Estoque</th><th>NF · qtde faturada</th><th>Remessa</th></tr></thead><tbody>';
-  for(const r of L)h+='<tr><td class="m">'+esc(r.it)+'</td><td class="m">'+r.mat+'</td><td class="desc l" title="'+esc(r.desc)+'">'+esc(r.desc)+'</td><td class="r">'+fq(r.q)+'</td><td class="r">'+fq(r.s)+'</td><td>'+pillSt(r.st)+'</td>'+(open_(r)?U(r.v):U0)+'<td class="r">'+(r.e!=null?fq(r.e):'')+'</td><td>'+esc(nfTxt(r))+'</td><td class="'+(open_(r)&&r.dr&&r.dr<cur.date?'late':'')+'">'+fd(r.dr)+'</td></tr>';
+  for(const r of L)h+='<tr><td class="m">'+esc(r.it)+'</td><td class="m">'+r.mat+'</td><td class="desc l" title="'+esc(r.desc)+'">'+esc(r.desc)+'</td><td class="r">'+fq(r.q)+'</td><td class="r">'+fq(r.s)+'</td><td>'+pillSt(r.st)+'</td>'+(open_(r)?U(r.v):U0)+estTd(r)+'<td>'+esc(nfTxt(r))+'</td><td class="'+(open_(r)&&r.dr&&r.dr<cur.date?'late':'')+'">'+fd(r.dr)+'</td></tr>';
   return h+'</tbody>';
 }
 function viewOV(v,ovs){
@@ -469,7 +471,7 @@ function viewIt(v,rows){
   const L=sorter(rows.filter(passRow).map(r=>({...r,val:pend(r)})),'it');
   const H='<thead>'+th('it',[['ov','OV'],['it','Item'],['mat','Material'],['desc','Descrição'],['q','Qtde OV'],['s','Saldo'],['st','Status'],['val','Valor pend. USD','usd'],['e','Estoque'],['nfq','NF · qtde faturada'],['dr','Remessa'],['cli','Cliente','l']])+'</thead>';
   let h='<div class="tablebox"><table>'+H+'<tbody>';
-  for(const r of L)h+='<tr><td class="ov">'+ovS(r.ov)+'</td><td class="m">'+esc(r.it)+'</td><td class="m">'+r.mat+'</td><td class="desc l" title="'+esc(r.desc)+'">'+esc(r.desc)+'</td><td class="r">'+fq(r.q)+'</td><td class="r">'+fq(r.s)+'</td><td>'+pillSt(r.st)+'</td>'+(open_(r)?U(r.v):U0)+'<td class="r">'+(r.e!=null?fq(r.e):'')+'</td><td>'+esc(nfTxt(r))+'</td><td class="'+(open_(r)&&r.dr&&r.dr<cur.date?'late':'')+'">'+fd(r.dr)+'</td><td class="l">'+esc(r.cli)+'</td></tr>';
+  for(const r of L)h+='<tr><td class="ov">'+ovS(r.ov)+'</td><td class="m">'+esc(r.it)+'</td><td class="m">'+r.mat+'</td><td class="desc l" title="'+esc(r.desc)+'">'+esc(r.desc)+'</td><td class="r">'+fq(r.q)+'</td><td class="r">'+fq(r.s)+'</td><td>'+pillSt(r.st)+'</td>'+(open_(r)?U(r.v):U0)+estTd(r)+'<td>'+esc(nfTxt(r))+'</td><td class="'+(open_(r)&&r.dr&&r.dr<cur.date?'late':'')+'">'+fd(r.dr)+'</td><td class="l">'+esc(r.cli)+'</td></tr>';
   h+='</tbody>'+(L.length?'<tfoot><tr><td colspan="7" style="text-align:left">Total USD · '+L.length+' linhas</td>'+U(sum(L,r=>r.val))+'<td colspan="4"></td></tr></tfoot>':'')+'</table>'+(L.length?'':'<div class="empty">Nada encontrado.</div>')+'</div><div class="note">O estoque da ZSALR é o saldo total do material, compartilhado com todas as OVs da Sumig (inclusive de outros vendedores); não é reservado para estas OVs. Linhas C não guardam estoque.</div>';
   v.innerHTML=h;$('#count').textContent=L.length+' linhas';bindSort();
 }
