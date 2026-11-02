@@ -1245,7 +1245,7 @@ async function boot(){
     }catch(e){DB=null;saved=[]}}
   ROWS=saved.length?saved:base.map(mk);
   if(!saved.length&&!DB)$('dbstate').textContent='sem salvamento local';
-  else $('dbstate').textContent='salvo neste navegador';
+  else $('dbstate').textContent='';
   EMS_TR.setUser(USERGL);EMS_ROM.setUser('es',GLX.es);EMS_ROM.setUser('fr',GLX.fr);
   ROWS.forEach(r=>{hay(r);});
   ROWS.forEach((r,i)=>IDX.set(r.m,i));
