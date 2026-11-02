@@ -66,7 +66,7 @@ i[data-i] svg{width:18px;height:18px;fill:none;stroke:currentColor;stroke-width:
 
 /* main */
 .main{min-width:0;display:flex;flex-direction:column}
-.topbar{position:sticky;top:0;z-index:20;display:flex;align-items:center;gap:10px;padding:10px 20px;background:color-mix(in srgb,var(--bg) 88%,transparent);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
+.topbar{position:sticky;top:0;z-index:20;display:flex;align-items:center;gap:10px;height:40.5px;padding:0 20px;background:color-mix(in srgb,var(--bg) 88%,transparent);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
 .crumb{color:var(--muted);font-size:13px;display:flex;gap:8px;align-items:center}
 .crumb b{color:var(--ink);font-weight:600}
 .sp{flex:1}
@@ -76,6 +76,7 @@ i[data-i] svg{width:18px;height:18px;fill:none;stroke:currentColor;stroke-width:
 .btn.primary{background:var(--accent);color:var(--accent-ink);border-color:var(--accent)}
 .btn.danger{color:var(--bad)}
 .btn.icon{padding:7px 9px}
+.topbar .btn{padding-top:4px;padding-bottom:4px}
 .btn:disabled{opacity:.5;cursor:not-allowed}
 .stat{display:none;align-items:center;gap:6px;font-size:12px;color:var(--muted);padding:4px 10px;border:1px solid var(--line);border-radius:999px;background:var(--surface)}
 .stat::before{content:"";width:7px;height:7px;border-radius:50%;background:var(--warn)}
@@ -165,14 +166,14 @@ tr.saldo td:first-child{box-shadow:inset 3px 0 0 var(--warn)}
 .modmsg b{display:block;color:var(--ink);font-size:16px;margin-bottom:6px}
 .modmsg code{font-family:var(--mono);background:var(--surface2);padding:1px 6px;border-radius:4px;color:var(--ink)}
 
-@media (max-width:1400px) and (min-width:921px){.app{grid-template-columns:206px minmax(0,1fr)}.page{padding:16px 12px 48px}.topbar{padding:10px 12px}}
+@media (max-width:1400px) and (min-width:921px){.app{grid-template-columns:206px minmax(0,1fr)}.page{padding:16px 12px 48px}.topbar{padding:0 12px}
 @media (max-width:920px){
   .app{grid-template-columns:minmax(0,1fr)}
   .side{position:fixed;left:0;top:0;width:260px;transform:translateX(-102%);transition:transform .2s}
   .nav-open .side{transform:none}
   .nav-open .scrim{display:block;position:fixed;inset:0;background:rgba(6,10,18,.55);z-index:25}
   .btn.burger{display:inline-flex}
-  .topbar{padding:10px 14px} .page{padding:16px 14px 48px}
+  .topbar{padding:0 14px} .page{padding:16px 14px 48px}
   .crumb span.hide-s{display:none}
 }
 @media (prefers-reduced-motion:reduce){.side{transition:none}}
