@@ -117,8 +117,8 @@ body.embed .crumb{display:none}
   <button class="btn" id="btnXls" type="button">Exportar Excel</button>
   <button class="btn icon" id="btnTheme" type="button" title="Tema claro/escuro" aria-label="Tema claro/escuro">◐</button>
   <div class="btn-group" role="group" aria-label="Carregar relatórios">
-    <label class="btn primary" title="Carteira em aberto (A, B, C) e estoque">1 · Carregar ZSALR<input id="file" type="file" accept=".xlsx,.xls" class="hide"></label>
-    <label class="btn primary" title="Notas fiscais emitidas e taxa de conversão">2 · Carregar ZSD04<input id="fileNF" type="file" accept=".xlsx,.xls" class="hide"></label>
+    <label class="btn primary" title="Carteira em aberto (A, B, C) e estoque">Carregar ZSALR<input id="file" type="file" accept=".xlsx,.xls" class="hide"></label>
+    <label class="btn primary" title="Notas fiscais emitidas e taxa de conversão">Carregar ZSD04<input id="fileNF" type="file" accept=".xlsx,.xls" class="hide"></label>
   </div>
 </header>
 <main class="page">
@@ -354,7 +354,7 @@ function renderPrev(){
     h+='<section class="card prev"><b>Prévia da carga ZSALR</b> <span class="muted">– '+esc(novo.file)+'</span><ul>'+
      '<li>Data da carga: <input type="date" id="dtPrev" value="'+novo.date+'"></li>'+
      '<li>'+novo.rows.length+' linhas (não faturadas: '+c.A+' · parciais: '+c.B+' · faturadas: '+c.C+')'+(ign.length?' · '+ign.length+' linha sem OV/item ignorada (total da planilha)':'')+' · '+new Set(novo.rows.map(r=>r.ov)).size+' OVs</li>'+
-     '<li>Valor pendente (A+B): <b>USD '+fm(novo.rows.reduce((t,r)=>t+pend(r),0))+'</b></li>'+
+     '<li>Valor pendente: <b>USD '+fm(novo.rows.reduce((t,r)=>t+pend(r),0))+'</b></li>'+
      '<li>'+(temEstq?'Estoque lido para '+comE.length+' linhas A/B ('+new Set(comE.map(r=>r.mat)).size+' materiais)':'<span class="late">Coluna de estoque (Estq.…) não encontrada nesta carga</span>')+'</li>';
     if(ant){const d=comparar(novo,ant);
       h+='<li>Em relação a '+fd(ant.date)+': '+d.novas.length+' linhas novas · '+d.mudou.length+' alteradas · '+d.sairam.length+' saíram da lista · faturado estimado <b>USD '+fm(d.fatUsd)+'</b></li>'}
@@ -402,7 +402,7 @@ function render(){
   const val=sum(rows,pend),abertas=ovs.filter(o=>o.A+o.B>0).length;
   const dtn=nfs.map(r=>r.dt).filter(Boolean).sort();
   st.className='stat on';st.textContent='ZSALR '+fd(cur.date)+(nfs.length?' · NFs até '+fd(dtn[dtn.length-1]):'');
-  $('#kpis').innerHTML='<div class="kpi acc"><div class="l">Valor pendente (A+B)</div><div class="v">USD '+fm(val)+'</div><div class="n">'+(c.A+c.B)+' linhas ('+c.A+' não faturadas · '+c.B+' parciais) em '+abertas+' OVs</div></div>';
+  $('#kpis').innerHTML='<div class="kpi acc"><div class="l">Valor pendente</div><div class="v">USD '+fm(val)+'</div><div class="n">'+(c.A+c.B)+' linhas ('+c.A+' não faturadas · '+c.B+' parciais) em '+abertas+' OVs</div></div>';
   const d=cmp?comparar(cur,cmp):null;
   const T=[['ov','Por OV'],['it','Itens'],['nf','Faturamento (NF)'],['mud','Mudanças'+(d?' <small>'+(d.novas.length+d.mudou.length+d.sairam.length)+'</small>':'')],['car','Cargas']];
   $('#tabs').innerHTML=T.map(t=>'<button class="chip" type="button" data-t="'+t[0]+'" aria-pressed="'+(tab===t[0])+'">'+t[1]+'</button>').join('');
