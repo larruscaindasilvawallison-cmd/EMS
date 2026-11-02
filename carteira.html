@@ -428,7 +428,7 @@ function render(){
 }
 const barHTML=ph=>'<input type="search" id="q" placeholder="'+ph+'" value="'+esc(fBusca)+'" aria-label="Buscar">'+
   ['A','B','C'].map(k=>'<label class="l2"><input type="checkbox" class="fs" value="'+k+'"'+(fStatus.has(k)?' checked':'')+'> '+stNome(k)+'</label>').join('')+
-  '<label class="l2"><input type="checkbox" id="fAt"'+(fAtraso?' checked':'')+'> remessa vencida</label>';
+  '<label class="l2"><input type="checkbox" id="fAt"'+(fAtraso?' checked':'')+'> Remessa vencida</label>';
 function bindBar(){
   const q=$('#q');q.oninput=()=>{fBusca=q.value;const p=q.selectionStart;render();const n=$('#q');n.focus();n.setSelectionRange(p,p)};
   document.querySelectorAll('.fs').forEach(c=>c.onchange=()=>{c.checked?fStatus.add(c.value):fStatus.delete(c.value);render()});
