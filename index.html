@@ -461,7 +461,7 @@ function render(){
     kp('A faturar · USD','US$ '+nf2.format(aUSD),'acc')+
     kp('A faturar · EUR','€ '+nf2.format(aEUR),'acc')+
     kp('Faturado','R$ '+nf2.format(fat),esc(mesLabel(S.mes)))+
-    kp('A receber','R$ '+nf2.format(rec),'NF emitida, não recebida')+
+    kp('A receber','R$ '+nf2.format(rec),'')+
     kp('Vencido','R$ '+nf2.format(vTot),vencidos.length+' NF · todos os meses',vTot>0?'bad':'');
   const vis=visibleRows();
   $('#count').textContent=vis.length+(vis.length===1?' linha':' linhas');
