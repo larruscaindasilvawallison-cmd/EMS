@@ -84,6 +84,7 @@ i[data-i] svg{width:18px;height:18px;fill:none;stroke:currentColor;stroke-width:
 .page{padding:20px 20px 56px;display:flex;flex-direction:column;gap:18px;max-width:1700px;width:100%}
 .ph h1{margin:0;font-size:24px;letter-spacing:-.02em;font-weight:700;text-wrap:balance}
 .ph p{margin:2px 0 0;color:var(--muted);font-size:13.5px}
+.phrow{display:flex;align-items:flex-end;justify-content:space-between;gap:16px;flex-wrap:wrap}
 .banner{padding:10px 14px;border-radius:10px;background:var(--warn-bg);color:var(--warn);font-size:13px}
 .banner[hidden]{display:none}
 
@@ -215,12 +216,13 @@ tr.saldo td:first-child{box-shadow:inset 3px 0 0 var(--warn)}
       <div class="crumb"><span class="hide-s" id="crumbA">Exportação</span><span class="hide-s">/</span><b id="crumbB">Pedidos</b></div>
       <div class="sp"></div>
       <span class="stat only-ped" id="stat">Conectando…</span>
-      <button class="btn primary only-ped" id="bNovo" type="button"><i data-i="plus"></i>Novo pedido</button>
     </header>
 
     <main class="page" id="v-pedidos">
-      <div class="ph"><h1>Organizador mensal de pedidos</h1><p>OVs por mês, faturamento parcial e prazos de pagamento a partir da NF.</p></div>
-      <div class="banner" id="bnStatus" hidden></div>
+      <div class="phrow">
+  <div class="ph"><h1>Organizador mensal de pedidos</h1><p>OVs por mês, faturamento parcial e prazos de pagamento a partir da NF.</p></div>
+  <button class="btn primary" id="bNovo" type="button"><i data-i="plus"></i>Novo pedido</button>
+</div>
       <section class="kpis" id="kpis" aria-label="Totais"></section>
       <section class="card">
         <div class="tools">
