@@ -518,7 +518,7 @@ $('#btnXls').onclick=()=>{
   const wb=XLSX.utils.book_new();
   const add=(n,a)=>XLSX.utils.book_append_sheet(wb,XLSX.utils.json_to_sheet(a.length?a:[{}]),n);
   const r2=x=>Math.round(x*100)/100;
-  add('Por OV',ovs.map(o=>({OV:o.ov,Cliente:o.cli,Incoterm:o.inc,'Linhas não faturadas':o.A,'Linhas parciais':o.B,'Linhas faturadas':o.C,'Situação':sitNome(o.sit),'Qtde pendente':o.qtd,'Valor pendente USD':r2(o.val),'Faturado NF USD':r2(o.fatUSD),'Faturado NF R$':r2(o.fatBRL),'Taxa NF':o.tx?Math.round(o.tx*1e4)/1e4:'','Data pedido':o.dp,'Remessa mais antiga em aberto':o.dr,'Atraso (dias)':o.atraso})));
+  add('OV',ovs.map(o=>({OV:o.ov,Cliente:o.cli,Incoterm:o.inc,'Linhas não faturadas':o.A,'Linhas parciais':o.B,'Linhas faturadas':o.C,'Situação':sitNome(o.sit),'Qtde pendente':o.qtd,'Valor pendente USD':r2(o.val),'Faturado NF USD':r2(o.fatUSD),'Faturado NF R$':r2(o.fatBRL),'Taxa NF':o.tx?Math.round(o.tx*1e4)/1e4:'','Data pedido':o.dp,'Remessa mais antiga em aberto':o.dr,'Atraso (dias)':o.atraso})));
   add('Itens',rows.map(r=>({OV:r.ov,Item:r.it,Material:r.mat,'Descrição':r.desc,'Qtde OV':r.q,'Saldo pendente':r.s,Status:stNome(r.st),'Valor pendente USD':pend(r),'Estoque (A/B)':r.e!=null?r.e:'','NF(s)':r.nfs.join(', '),'Qtde faturada NF':r.nfq||'','USD NF':r.nfq?r2(r.nfusd):'','R$ NF':r.nfq?r2(r.nfbrl):'','Conferência NF':r.conf,'Remessa desejada':r.dr,Cliente:r.cli})));
   if(nfs.length){
     add('NFs',[...NI.byNF.values()].sort((a,b)=>a.dt<b.dt?1:-1).map(n=>({NF:n.nf,Data:n.dt,OV:[...n.ovs].join(', '),Cliente:n.cli,Linhas:n.linhas,Qtde:n.q,USD:r2(n.usd),'R$':r2(n.brl),Taxa:Math.round(n.tx*1e4)/1e4})));
