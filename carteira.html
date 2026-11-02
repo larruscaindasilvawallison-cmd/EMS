@@ -422,7 +422,7 @@ function render(){
   $('#tabs').innerHTML=T.map(t=>'<button class="chip" type="button" data-t="'+t[0]+'" aria-pressed="'+(tab===t[0])+'">'+t[1]+'</button>').join('');
   document.querySelectorAll('#tabs .chip').forEach(b=>b.onclick=()=>{tab=b.dataset.t;render()});
   const comBar=tab==='ov'||tab==='it';
-  $('#bar').innerHTML=comBar?barHTML(tab==='ov'?'Buscar OV, cliente, material, NF':'Buscar OV, material, descrição, NF'):'';
+  $('#bar').innerHTML=comBar?barHTML(tab==='ov'?'Buscar OV, cliente...':'Buscar OV, material, descrição, NF'):'';
   const v=$('#view');
   if(tab==='ov')viewOV(v,ovs);else if(tab==='it')viewIt(v,rows);else if(tab==='nf')viewNF(v);else if(tab==='mud')viewMud(v,d);else viewCar(v);
   if(comBar)bindBar();
