@@ -299,7 +299,7 @@ function render(){
     return `<div class="li"><div class="t">${flagHTML(im&&im.cc)}<div><b>${esc(p.importador)}</b><small>NF ${esc(p.nf)} · OV ${esc(p.ov)} · venc. ${brDate(v)}</small></div></div><div class="r">${brl(p)!=null?BRL(brl(p)):'sem taxa'}<br>${pill}</div></div>`}).join('');
 
   /* carteira (mês) */
-  const st=[['AGUARDANDO ESTOQUE','var(--c-info)',p=>!p.nf&&!(p.estoque>0)],['PRONTO P/ FATURAR','var(--c-warn)',p=>!p.nf&&p.estoque>0],['FATURADO','var(--c-ok)',p=>!!p.nf]];
+  const st=[['Aguardando disponibilidade','var(--c-info)',p=>!p.nf&&!(p.estoque>0)],['Pronto para faturar','var(--c-warn)',p=>!p.nf&&p.estoque>0],['Faturado','var(--c-ok)',p=>!!p.nf]];
   const cart=st.map(([nm,col,f])=>{const a=rows.filter(f);
     const u=sum(a.filter(p=>p.moeda==='USD'),p=>p.valor||0),e=sum(a.filter(p=>p.moeda==='EUR'),p=>p.valor||0);
     const parts=[];if(u)parts.push('US$ '+nf2.format(u));if(e)parts.push('€ '+nf2.format(e));
