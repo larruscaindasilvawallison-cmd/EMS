@@ -181,7 +181,7 @@ const pillC=k=>k?'<span class="pill '+CL[k][1]+'">'+CL[k][0]+'</span>':'<span cl
 /* ===== telas ===== */
 function render(){
   const A=$('#app');
-  A.innerHTML='<div class="phrow"><div class="ph"><h1>Certificado de Origem</h1><p>Classifica os itens das NFs (Certificado ou Importado) e soma quantidade, USD e descrições por NCM.</p></div><div class="sp"></div><button class="btn" id="bTab">Tabela de classificação · '+TAB.rows.length+' itens</button></div>'+
+  A.innerHTML='<div class="phrow"><div class="ph"><h1>Certificado de Origem</h1></div><div class="sp"></div><button class="btn" id="bTab">Tabela de classificação · '+TAB.rows.length+' itens</button></div>'+
    '<section class="card"><h2>1. Escolha as NFs</h2><div class="sub">NFs vindas da ZSD04 carregada no módulo Carteira. Marque uma ou mais.</div><div class="tools"><input type="search" id="nq" placeholder="Filtrar por NF, OV ou cliente" value="'+esc(NF.q)+'"><button class="btn sm" id="nAll">Marcar visíveis</button><button class="btn sm" id="nNone">Limpar seleção</button><button class="btn sm" id="nRe" title="Reler as NFs da Carteira">Atualizar lista</button><span class="cnt" id="ncnt"></span></div><div class="nfl" id="nfl"></div></section>'+
    '<div id="res"></div>';
   $('#bTab').onclick=modalTab;
